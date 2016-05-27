@@ -1,4 +1,4 @@
-package com.codechef.android.time_extraction_classes;
+package timeconversionsandroid.podcopic.com.library;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +14,7 @@ import java.util.TimeZone;
 /**
  * this class extract time ,date, day in desired format from time stamp
  */
-public class TimeExtraction {
+public class TimeConversions {
 
     //variables
     private int day;
@@ -49,7 +49,7 @@ public class TimeExtraction {
     private String December = "December";
 
     //constructor
-    public TimeExtraction(Long timestamp) {
+    public TimeConversions(Long timestamp) {
 
         Date date = new Date(timestamp * 1000);
         TimeZone tz = TimeZone.getTimeZone("GMT");
