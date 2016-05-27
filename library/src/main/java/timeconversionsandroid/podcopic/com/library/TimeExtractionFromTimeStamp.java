@@ -1,11 +1,6 @@
 package timeconversionsandroid.podcopic.com.library;
 
-import android.content.Context;
-import android.content.Intent;
-import android.text.format.DateUtils;
-import android.util.Log;
-
-import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -14,7 +9,7 @@ import java.util.TimeZone;
 /**
  * this class extract time ,date, day in desired format from time stamp
  */
-public class TimeConversions {
+public class TimeExtractionFromTimeStamp {
 
     //variables
     private int day;
@@ -24,32 +19,14 @@ public class TimeConversions {
     private int hours;
     private int seconds;
     private String day_of_the_week;
+    private String dateString;
 
     //constatnts day
-    private String SUNDAY = "Sunday";
-    private String MONDAY = "Monday";
-    private String TUESDAY = "Tuesday";
-    private String WEDNESDAY = "Wednesday";
-    private String THURSDAY = "Thursday";
-    private String FRIDAY = "Friday";
-    private String SATURDAY = "Saturday";
 
-    //constants month
-    private String JANUARY = "January";
-    private String FEBRUARY = "February";
-    private String MARCH = "March";
-    private String APRIL = "April";
-    private String MAY = "May";
-    private String JUNE = "June";
-    private String JULY = "July";
-    private String AUGUST = "August";
-    private String SEPTEMBER = "September";
-    private String OCTOBER = "October";
-    private String November = "November";
-    private String December = "December";
+
 
     //constructor
-    public TimeConversions(Long timestamp) {
+    public TimeExtractionFromTimeStamp(Long timestamp) {
 
         Date date = new Date(timestamp * 1000);
         TimeZone tz = TimeZone.getTimeZone("GMT");
@@ -65,6 +42,7 @@ public class TimeConversions {
         this.minutes = cal.get(Calendar.MINUTE);
         this.seconds = cal.get(Calendar.SECOND);
         this.day_of_the_week = getDayOfWeekFromInt(cal.get(Calendar.DAY_OF_WEEK));
+        this.dateString = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss aa").format(date);;
 
 
     }
@@ -78,19 +56,19 @@ public class TimeConversions {
 
 
         if (dayOfTheWeekInInt == 1)
-            return SUNDAY;
+            return Day.SUNDAY;
         else if (dayOfTheWeekInInt == 2)
-            return MONDAY;
+            return Day.MONDAY;
         else if (dayOfTheWeekInInt == 3)
-            return TUESDAY;
+            return Day.TUESDAY;
         else if (dayOfTheWeekInInt == 4)
-            return WEDNESDAY;
+            return Day.WEDNESDAY;
         else if (dayOfTheWeekInInt == 5)
-            return THURSDAY;
+            return Day.THURSDAY;
         else if (dayOfTheWeekInInt == 6)
-            return FRIDAY;
+            return Day.FRIDAY;
         else
-            return SATURDAY;
+            return Day.SATURDAY;
 
     }
 
@@ -100,29 +78,29 @@ public class TimeConversions {
      */
     private String getMonthFromInt(int monthInInt) {
         if (monthInInt == 1)
-            return JANUARY;
+            return Month.JANUARY;
         else if (monthInInt == 2)
-            return FEBRUARY;
+            return Month.FEBRUARY;
         else if (monthInInt == 3)
-            return MARCH;
+            return Month.MARCH;
         else if (monthInInt == 4)
-            return APRIL;
+            return Month.APRIL;
         else if (monthInInt == 5)
-            return MAY;
+            return Month.MAY;
         else if (monthInInt == 6)
-            return JUNE;
+            return Month.JUNE;
         else if (monthInInt == 7)
-            return JULY;
+            return Month.JULY;
         else if (monthInInt == 8)
-            return AUGUST;
+            return Month.AUGUST;
         else if (monthInInt == 9)
-            return SEPTEMBER;
+            return Month.SEPTEMBER;
         else if (monthInInt == 10)
-            return OCTOBER;
+            return Month.OCTOBER;
         else if (monthInInt == 11)
-            return November;
+            return Month.November;
         else
-            return December;
+            return Month.December;
     }
 
 
@@ -180,6 +158,10 @@ public class TimeConversions {
 
     public String getMonth() {
         return this.month;
+    }
+
+    public String getStringDate(){
+        return dateString;
     }
 
 }
