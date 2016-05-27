@@ -22,14 +22,14 @@ public class TimeExtractionFromStringDate {
     private String day_of_the_week;
     private long timeStamp;
 
-    //constatnts day
-
-
 
     //constructor
-    public TimeExtractionFromStringDate(String dateString) {
+    //e.g --> MM/dd/yyyy hh:mm:ss aa
+    public TimeExtractionFromStringDate(String dateString , String format) {
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss aa");
+        String convertedFormat = formateDateString(format);
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat(convertedFormat);
         Date date = new Date();
         try {
             date = dateFormat.parse(dateString);
@@ -178,6 +178,21 @@ public class TimeExtractionFromStringDate {
 
     public long getTimeStamp(){
         return timeStamp;
+    }
+
+    private String formateDateString(String format){
+        //MM/dd/yyyy hh:mm:ss aa
+        String finalFormat = "";
+        finalFormat = format.replace("month","MM");
+        finalFormat = format.replace("day","dd");
+        finalFormat = format.replace("year","yyyy");
+        finalFormat = format.replace("hour","hh");
+        finalFormat = format.replace("min","mm");
+        finalFormat = format.replace("sec","ss");
+        finalFormat = format.replace("type","aa");
+
+
+        return finalFormat;
     }
 
 }

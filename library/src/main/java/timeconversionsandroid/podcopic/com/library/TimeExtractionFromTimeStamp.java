@@ -20,9 +20,7 @@ public class TimeExtractionFromTimeStamp {
     private int seconds;
     private String day_of_the_week;
     private String dateString;
-
-    //constatnts day
-
+    private Date date;
 
 
     //constructor
@@ -42,7 +40,8 @@ public class TimeExtractionFromTimeStamp {
         this.minutes = cal.get(Calendar.MINUTE);
         this.seconds = cal.get(Calendar.SECOND);
         this.day_of_the_week = getDayOfWeekFromInt(cal.get(Calendar.DAY_OF_WEEK));
-        this.dateString = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss aa").format(date);;
+        this.dateString = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss aa").format(date);
+        this.date = date;
 
 
     }
